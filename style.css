@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: cadetblue;
+}
+
+.container {
+    width: 250px;
+    max-width: 100%;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#question {
+    font-size: larger;
+}
+
+.buttons {
+    border-radius: 5px;
+}
+
+.btn {
+    background-color: rgb(172, 107, 216);
+    margin: 10px;
+}
+
+.start-btn {
+    background-color: rgb(168, 95, 218);
+}
+
+.buttons {
+    padding: 10px;
+}
