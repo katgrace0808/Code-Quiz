@@ -1,80 +1,59 @@
-let questionsArr = [{
+let questionsArr = [
+    {
     question: "Who invented JavaScript?",
-    answers: [ 
-        {text: "Tim Berners-Lee", correct: false},
-        {text: "Hakon Wium lie", correct: false},
-        {text: "Brendan Eich", correct: true},
-        {text: "James Gosling", correct: false}]
-}, {
+    choices: ["Tim Berners-Lee", "Hakon Wium lie", "Brendan Eich", "James Gosling"],
+    answer: "Brendan Eich",
+    },
+    {
     question: "What HTML tag is used to link to the JavaScript file?",
-    answers: [
-        {text: "<script>", correct: true},
-        {text: "<link>", correct: false},
-        {text: "<function>", correct: false},
-        {text: "<a src=./script.js>", correct: false}]
-}, {
+    choices: ["<script>", "<link>", "<function>", "<a src=./script.js>"],
+    answer: "<script>",
+    },
+    {
     question: "Which of the following is true about JavaScript variable names?",
-    answers: [
-        {text:"Are not case sensitive.", correct: false},
-        {text: "Can contain letters, digits, underscores, and dollar signs.", correct: true},
-        {text: "Can begin with a number.", correct: false},
-        {text: "Can be used for a different variable name in the same file.", correct: false}]
-}, {
+    choices: ["Are not case sensitive.", "Can contain letters, digits, underscores, and dollar signs.", "Can begin with a number.", "Can be used for a different variable name in the same file."],
+    answer: "Can contain letters, digits, underscores, and dollar signs.",
+    },
+    {
     question: "What is the correct syntax for a JavaScript function?",
-    answers: [
-        {text: "name(function) {//code to be executed}", correct: false},
-        {text: "function name{//code to be executed}", correct: false},
-        {text: "function (//code to be executed)", correct: false},
-        {text: "function name() {//code to be executed}", correct: true}] 
-}]
+    choices: ["name(function) {//code to be executed}", "function name{//code to be executed}", "function (//code to be executed)", "function name() {//code to be executed}"],
+    answer: "function name() {//code to be executed}", 
+    },
+];
 
-let score = 0;
-let startButton = document.getElementById("start-button")
-let nextButton = document.getElementById("next-button")
-let questionContainerEl = document.getElementById("question-container");
-let answerEl = document.getElementById("answer-buttons");
+let currentQuestion = 0;
+let startButton = document.getElementById("start-button");
 let questionEl = document.getElementById("question");
+let choicesEl = document.getElementById("choices");
+let startContainer = document.getElementById("start-container");
+let choiceBtn = document.createElement("button");
+choiceBtn.setAttribute("type", "button");
+let submitEl = document.getElementById("submit");
+// let score = 0;
 
-
-startButton.addEventListener('click', startQuiz)
-
+//function to start the quiz; used for clicking start button
 function startQuiz() {
-    console.log("Started");
-    currentQuestionIndex = 0;
-    setNextQuestion();
-}
-
-function setNextQuestion() {
-    resetState()
-    showQuestion([currentQuestionIndex])
-}
-
-function showQuestion(question) {
-    questionEl.innerText = question.question
+    console.log("started")
     
-    }
-    
+startButton.addEventListener("click", function(event) {
+    event.preventDefault();
+        
+// to loop through question and choices in object array
+    startContainer.style.visibility="hidden";
+    let questionData = questionsArr[currentQuestion];
+    questionEl.textContent=questionData.question;
+    choicesEl.innerHTML = "";
 
-
-function resetState() {
-    nextButton.classList.add("hide")
-    while (answerEl.firstChild) {
-        answerEl.removeChild(answerEl.firstChild)
-    }
+    for (let choice of questionData.choices) {
+        choiceBtn.textContent = choice;
+        choicesEl.appendChild(choiceBtn);
+        console.log(choice)
 }
+    // currentQuestion += 1;
+    // if (currentQuestion === questionData.length) {
+    //     currentQuestion = 0;
+    // };
 
-function selectAnswer(answers) {
-    
+});
 }
-
-
-// function loadQuestion (questionIndex) {
-//     let q = questionsArr[questionIndex];
-//     questionEl.textContent = (questionIndex +1) + ". " + q.question;
-//     answerAEl.textContent = q.answerA;
-//     answerBEl.textContent = q.answerB;
-//     answerCEl.textContent = q.answerC;
-//     answerDEl.textContent = q.answerD;
-// };
-
-
+startQuiz();
