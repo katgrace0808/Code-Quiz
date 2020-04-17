@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High Scores</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="scorecard">
+        <h2>High Scores!</h2>
+        <form method="POST">
+            <div class="input-group">
+              <label for="highscore">High Score</label>
+              <input type="text" name="highscore" id="score" placeholder="60" />
+            </div>
+            <div class="input-group">
+              <label for="initials">User Initials</label>
+              <input type="text" name="initials" id="initials" placeholder="XXX" />
+            </div>
+            <div id="msg"></div>
+            <button href="./index.html" id="go-back">Go Back</button>
+          </form>
+    </div>
+    <div class="scorecard">
+        <h2>Last High Score:</h2>
+        <p><strong>High Score:</strong> <span id="last-score"></span></p>
+        <p><strong>User Initials:</strong> <span id="last-user"></span></p>
+      </div>
+    <script src="./highscores.js"></script>
+</body>
+</html>

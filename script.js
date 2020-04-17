@@ -26,33 +26,50 @@ let startButton = document.getElementById("start-button");
 let questionEl = document.getElementById("question");
 let choicesEl = document.getElementById("choices");
 let startContainer = document.getElementById("start-container");
-let choiceBtn = document.createElement("button");
-choiceBtn.setAttribute("type", "button");
+let choicePopUp = document.getElementById("choice-popup");
 let submitEl = document.getElementById("submit");
-// let score = 0;
 
 //function to start the quiz; used for clicking start button
 function startQuiz() {
-    console.log("started")
+    choicesEl.style.visibility="hidden";
     
 startButton.addEventListener("click", function(event) {
     event.preventDefault();
         
 // to loop through question and choices in object array
     startContainer.style.visibility="hidden";
+    choicesEl.style.visibility="visible";
     let questionData = questionsArr[currentQuestion];
     questionEl.textContent=questionData.question;
     choicesEl.innerHTML = "";
 
     for (let choice of questionData.choices) {
+        let choiceBtn = document.createElement("button");
+        choiceBtn.setAttribute("type", "button");
+        choiceBtn.setAttribute("class", "choice-btn");
+        choiceBtn.setAttribute("value", choice)
         choiceBtn.textContent = choice;
         choicesEl.appendChild(choiceBtn);
-        console.log(choice)
-}
-    // currentQuestion += 1;
-    // if (currentQuestion === questionData.length) {
-    //     currentQuestion = 0;
-    // };
+
+    choiceBtn.addEventListener("click", function() {
+        let userChoice = choiceBtn.value;
+        let choicePopUp = document.getElementById("choice-popup");
+        if(userChoice === questionsArr[0].answer) {
+            choicePopUp.textContent="Correct!";
+            console.log(choicePopUp);
+        } else {
+            choicePopUp.textContent="Wrong";
+        }
+        currentQuestion += 1;
+        console.log(currentQuestion);
+        let questionData = questionsArr[currentQuestion];
+        questionEl.textContent=questionData.question;
+        if (currentQuestion == questionData.length) {
+            console.log(questionData.length);
+            currentQuestion = 0;
+    };
+    });
+};
 
 });
 }
