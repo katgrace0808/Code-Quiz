@@ -22,12 +22,14 @@ let questionsArr = [
 ];
 
 let currentQuestion = 0;
+let currentChoices = 0;
 let startButton = document.getElementById("start-button");
 let questionEl = document.getElementById("question");
 let choicesEl = document.getElementById("choices");
 let startContainer = document.getElementById("start-container");
 let choicePopUp = document.getElementById("choice-popup");
 let submitEl = document.getElementById("submit");
+let choiceBtn = document.createElement("button");
 
 //function to start the quiz; used for clicking start button
 function startQuiz() {
@@ -35,7 +37,7 @@ function startQuiz() {
     
 startButton.addEventListener("click", function(event) {
     event.preventDefault();
-        
+   
 // to loop through question and choices in object array
     startContainer.style.visibility="hidden";
     choicesEl.style.visibility="visible";
@@ -50,27 +52,148 @@ startButton.addEventListener("click", function(event) {
         choiceBtn.setAttribute("value", choice)
         choiceBtn.textContent = choice;
         choicesEl.appendChild(choiceBtn);
-
+       
     choiceBtn.addEventListener("click", function() {
         let userChoice = choiceBtn.value;
         let choicePopUp = document.getElementById("choice-popup");
-        if(userChoice === questionsArr[0].answer) {
+        if (userChoice === questionsArr[0].answer) {
             choicePopUp.textContent="Correct!";
-            console.log(choicePopUp);
         } else {
             choicePopUp.textContent="Wrong";
         }
+
         currentQuestion += 1;
-        console.log(currentQuestion);
         let questionData = questionsArr[currentQuestion];
         questionEl.textContent=questionData.question;
         if (currentQuestion == questionData.length) {
             console.log(questionData.length);
             currentQuestion = 0;
-    };
-    });
-};
+        }
+        currentChoices += 1;
+        let choicesData = questionsArr[currentChoices];
+        choicesEl.textContent=choicesData.choices;
+        if (currentChoices == choicesData.length) {
+            currentChoices = 0;
+        }
+    
+        for (let choice of questionData.choices) {
+            let choiceBtn = document.createElement("button");
+            choiceBtn.setAttribute("type", "button");
+            choiceBtn.setAttribute("class", "choice-btn");
+            choiceBtn.setAttribute("value", choice)
+            choiceBtn.textContent = choice;
+            choicesEl.appendChild(choiceBtn);
+           
+        choiceBtn.addEventListener("click", function() {
+            let userChoice = choiceBtn.value;
+            let choicePopUp = document.getElementById("choice-popup");
+            if (userChoice === questionsArr[1].answer) {
+                choicePopUp.textContent="Correct!";
+            } else {
+                choicePopUp.textContent="Wrong";
+            }
+    
+            currentQuestion += 1;
+            let questionData = questionsArr[currentQuestion];
+            questionEl.textContent=questionData.question;
+            if (currentQuestion == questionData.length) {
+                console.log(questionData.length);
+                currentQuestion = 0;
+            }
+            currentChoices += 1;
+            let choicesData = questionsArr[currentChoices];
+            choicesEl.textContent=choicesData.choices;
+            if (currentChoices == choicesData.length) {
+                currentChoices = 0;
+            }
+            
+        
+    
+        for (let choice of questionData.choices) {
+            let choiceBtn = document.createElement("button");
+            choiceBtn.setAttribute("type", "button");
+            choiceBtn.setAttribute("class", "choice-btn");
+            choiceBtn.setAttribute("value", choice)
+            choiceBtn.textContent = choice;
+            choicesEl.appendChild(choiceBtn);
+           
+        choiceBtn.addEventListener("click", function() {
+            let userChoice = choiceBtn.value;
+            let choicePopUp = document.getElementById("choice-popup");
+            if (userChoice === questionsArr[2].answer) {
+                choicePopUp.textContent="Correct!";
+            } else {
+                choicePopUp.textContent="Wrong";
+            }
+    
+            currentQuestion += 1;
+            let questionData = questionsArr[currentQuestion];
+            questionEl.textContent=questionData.question;
+            if (currentQuestion == questionData.length) {
+                console.log(questionData.length);
+                currentQuestion = 0;
+            }
+            currentChoices += 1;
+            let choicesData = questionsArr[currentChoices];
+            choicesEl.textContent=choicesData.choices;
+            if (currentChoices == choicesData.length) {
+                currentChoices = 0;
+            }
+            for (let choice of questionData.choices) {
+                let choiceBtn = document.createElement("button");
+                choiceBtn.setAttribute("type", "button");
+                choiceBtn.setAttribute("class", "choice-btn");
+                choiceBtn.setAttribute("value", choice)
+                choiceBtn.textContent = choice;
+                choicesEl.appendChild(choiceBtn);
+               
+            choiceBtn.addEventListener("click", function() {
+                let userChoice = choiceBtn.value;
+                let choicePopUp = document.getElementById("choice-popup");
+                if (userChoice === questionsArr[3].answer) {
+                    choicePopUp.textContent="Correct!";
+                } else {
+                    choicePopUp.textContent="Wrong";
+                }
+        
+                currentQuestion += 1;
+                let questionData = questionsArr[currentQuestion];
+                questionEl.textContent=questionData.question;
+                if (currentQuestion == questionData.length) {
+                    console.log(questionData.length);
+                    currentQuestion = 0;
+                }
+                currentChoices += 1;
+                let choicesData = questionsArr[currentChoices];
+                choicesEl.textContent=choicesData.choices;
+                if (currentChoices == choicesData.length) {
+                    currentChoices = 0;
+                }
+            });
+        }
 
+        });
+        }
+        });
+    }
+});
+
+}
 });
 }
+
+// let timer;
+// let count = 60;
+// let timerDisplay = document.getElementById("timer");
+
+// timer = setInterval(function() {
+//     timerDisplay.innerHTML(count--);
+    
+// }, 1000);
+
+// function minusTime() {
+//     if (userChoice !== questionsArr[0].length);
+//     count.subtract(15)
+// }
+
 startQuiz();
